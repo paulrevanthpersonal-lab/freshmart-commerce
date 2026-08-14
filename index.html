@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="FreshMart Commerce - a fast, accessible grocery storefront demonstration.">
+  <title>FreshMart Commerce</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#catalog">Skip to catalog</a>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="FreshMart home">
+      <span class="brand-mark">F</span><span>FreshMart</span>
+    </a>
+    <div class="search-shell">
+      <span aria-hidden="true">⌕</span>
+      <label class="sr-only" for="search">Search products</label>
+      <input id="search" type="search" placeholder="Search the market" autocomplete="off">
+      <kbd>⌘ K</kbd>
+    </div>
+    <button class="cart-button" id="openCart" aria-controls="cartDrawer" aria-expanded="false">
+      Basket <span id="cartCount">0</span>
+    </button>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="heroTitle">
+      <div>
+        <p class="eyebrow">THE WEEKLY MARKET / PHOENIX</p>
+        <h1 id="heroTitle">Good food.<br><em>Clear choices.</em></h1>
+        <p class="hero-copy">A responsive commerce experience built around fast discovery, transparent totals, and a cart that remembers.</p>
+      </div>
+      <div class="delivery-card">
+        <p>DELIVERY WINDOW</p>
+        <strong>Today · 5–7 PM</strong>
+        <button id="toggleDelivery">Switch to pickup</button>
+      </div>
+    </section>
+
+    <section class="toolbar" aria-label="Catalog controls">
+      <div class="categories" id="categories"></div>
+      <label>Sort
+        <select id="sort">
+          <option value="featured">Featured</option>
+          <option value="price-asc">Price · low first</option>
+          <option value="price-desc">Price · high first</option>
+          <option value="name">Name · A–Z</option>
+        </select>
+      </label>
+    </section>
+
+    <section class="catalog-heading">
+      <div><p class="eyebrow">CURATED TODAY</p><h2>Market shelf</h2></div>
+      <p id="resultCount" aria-live="polite"></p>
+    </section>
+    <section class="product-grid" id="catalog" aria-label="Products"></section>
+  </main>
+
+  <div class="scrim" id="scrim" hidden></div>
+  <aside class="drawer" id="cartDrawer" aria-labelledby="cartTitle" aria-hidden="true">
+    <div class="drawer-head">
+      <div><p class="eyebrow">YOUR ORDER</p><h2 id="cartTitle">Market basket</h2></div>
+      <button class="icon-button" id="closeCart" aria-label="Close basket">×</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="promo-row">
+      <label class="sr-only" for="promo">Promo code</label>
+      <input id="promo" placeholder="Promo code">
+      <button id="applyPromo">Apply</button>
+    </div>
+    <div class="totals">
+      <p><span>Subtotal</span><strong id="subtotal">$0.00</strong></p>
+      <p><span>Estimated tax</span><strong id="tax">$0.00</strong></p>
+      <p class="discount" id="discountRow" hidden><span>FRESH10</span><strong id="discount">−$0.00</strong></p>
+      <p class="grand-total"><span>Total</span><strong id="total">$0.00</strong></p>
+      <button class="checkout" id="checkout">Review checkout</button>
+    </div>
+  </aside>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/core.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
