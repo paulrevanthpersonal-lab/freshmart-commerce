@@ -2,6 +2,8 @@
 
 An accessible, responsive grocery storefront evolved from my original FreshMart browser prototype. The portfolio edition focuses on clean state management, testable commerce rules, keyboard support, and a fast interface with no runtime dependencies.
 
+**[Open the live demo](https://paulrevanthpersonal-lab.github.io/freshmart-commerce/)**
+
 ![FreshMart desktop storefront](docs/screenshots/storefront-desktop.png)
 
 ## 1. Product overview
