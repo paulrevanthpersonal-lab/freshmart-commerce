@@ -1,2 +1,4 @@
 .DS_Store
+data/runtime.json
+node_modules/
 node_modules/

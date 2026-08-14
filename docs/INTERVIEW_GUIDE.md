@@ -2,15 +2,15 @@
 
 ## One-minute explanation
 
-FreshMart is an accessible grocery storefront I evolved from an earlier single-file prototype. The portfolio edition separates testable pricing logic from UI state, adds responsive product discovery, persisted cart quantities, delivery mode, promo handling, keyboard behavior, and a distinct editorial visual system.
+FreshMart is the full-stack evolution of my earlier single-file grocery prototype. It separates pricing rules from UI state, serves 40 product records, validates stock and delivery slots on the server, persists test orders, and keeps the shopping flow accessible on desktop and mobile.
 
 ## Decisions I can explain
 
 - Core pricing and filtering rules have no DOM dependency, so Node can test them quickly.
-- The cart persists locally to demonstrate resilient client state without pretending a payment backend exists.
+- The cart persists locally, while checkout is revalidated by the service so browser values are never trusted.
 - CSS animations use transform and opacity and respect reduced-motion preferences.
-- Checkout is clearly labeled as a demonstration rather than simulating a real transaction.
+- Checkout creates a real local order record but deliberately never collects payment details.
 
 ## Next production steps
 
-An actual commerce release needs authenticated accounts, inventory and pricing APIs, server-side cart validation, a payment provider, analytics consent, image optimization, error monitoring, and end-to-end checkout tests.
+An actual commerce release needs authenticated accounts, a transactional database, inventory reservations, payment-provider tokenization, consented analytics, image optimization, rate limiting, error monitoring, and end-to-end checkout tests.

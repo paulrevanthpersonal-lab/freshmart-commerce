@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="FreshMart Commerce - a fast, accessible grocery storefront demonstration.">
+  <meta name="description" content="FreshMart Commerce - a full-stack grocery ordering and delivery application.">
   <title>FreshMart Commerce</title>
   <link rel="stylesheet" href="assets/styles.css">
 </head>
@@ -29,7 +29,7 @@
       <div>
         <p class="eyebrow">THE WEEKLY MARKET / PHOENIX</p>
         <h1 id="heroTitle">Good food.<br><em>Clear choices.</em></h1>
-        <p class="hero-copy">A responsive commerce experience built around fast discovery, transparent totals, and a cart that remembers.</p>
+        <p class="hero-copy">Forty grocery essentials, live stock, transparent pricing, delivery-slot selection, and order confirmation in one fast weekly shop.</p>
       </div>
       <div class="delivery-card">
         <p>DELIVERY WINDOW</p>
@@ -77,9 +77,25 @@
       <button class="checkout" id="checkout">Review checkout</button>
     </div>
   </aside>
+  <dialog id="checkoutDialog" class="checkout-dialog">
+    <button id="closeCheckout" class="icon-button close-checkout" aria-label="Close checkout">×</button>
+    <p class="eyebrow">DELIVERY CHECKOUT</p><h2>Complete your order</h2>
+    <form id="checkoutForm">
+      <div class="form-grid"><label>Name<input name="name" required value="Paul Revanth"></label><label>Phone<input name="phone" required value="928-555-0143"></label></div>
+      <label>Delivery address<textarea name="address" required>1500 S Lumberjack Road, Flagstaff, AZ 86011</textarea></label>
+      <fieldset><legend>Delivery window</legend><div id="slotOptions"></div></fieldset>
+      <div class="checkout-quote" id="checkoutQuote"></div>
+      <p class="checkout-boundary">Payment is intentionally mocked. No financial information is collected or stored.</p>
+      <p class="form-error" id="checkoutError" role="alert"></p>
+      <button class="checkout" type="submit">Confirm test order</button>
+    </form>
+  </dialog>
+  <dialog id="confirmationDialog" class="confirmation-dialog">
+    <p class="eyebrow">ORDER CONFIRMED</p><h2 id="confirmationTitle"></h2><p id="confirmationCopy"></p><button class="checkout" id="continueShopping">Continue shopping</button>
+  </dialog>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script src="assets/core.js"></script>
-  <script src="assets/app.js"></script>
+  <script type="module" src="assets/app.js"></script>
 </body>
 </html>

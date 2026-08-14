@@ -1,7 +1,11 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const core = require("../assets/core.js");
+const vm = require("node:vm");
+const { readFileSync } = require("node:fs");
+const context = {}; context.globalThis = context; vm.runInNewContext(readFileSync(require.resolve("../assets/core.js"), "utf8"), context); const core = context.FreshMartCore;
+const catalog = require("../data/products.json");
 const products = [{ name: "Apple", category: "Produce", price: 2, rank: 2 }, { name: "Milk", category: "Dairy", price: 4, rank: 1 }];
 test("filters by query and category", () => assert.equal(core.filterProducts(products, "app", "Produce").length, 1));
 test("sorts without mutating source", () => { const sorted = core.sortProducts(products, "price-desc"); assert.equal(sorted[0].name, "Milk"); assert.equal(products[0].name, "Apple"); });
-test("calculates discount before tax", () => { const total = core.calculateTotals([{ price: 10, quantity: 2 }], true); assert.deepEqual(total, { subtotal: 20, discount: 2, tax: 1.44, total: 19.44 }); });
+test("calculates discount before tax", () => { const total = core.calculateTotals([{ price: 10, quantity: 2 }], true); assert.equal(JSON.stringify(total), JSON.stringify({ subtotal: 20, discount: 2, tax: 1.44, total: 19.44 })); });
+test("ships a complete forty-item catalog", () => { assert.equal(catalog.length, 40); assert.equal(new Set(catalog.map(item => item.id)).size, 40); catalog.forEach(item => { assert.ok(item.name && item.category && item.unit && item.aisle); assert.ok(item.stock > 0); }); });

@@ -1,11 +1,13 @@
 # Architecture
 
-FreshMart is a dependency-free browser application. `core.js` contains deterministic catalog and pricing rules, while `app.js` owns DOM rendering, browser events, accessibility state, and local persistence. This boundary keeps business rules testable without a browser.
+FreshMart is a dependency-free full-stack application. `core.js` contains deterministic catalog and pricing rules, `app.js` owns browser rendering and accessibility state, and `server.js` owns trusted inventory, delivery slots, quotes, checkout, order lookup, and static-file delivery.
 
 ```text
-catalog data -> pure filter/sort/pricing rules -> view renderer
-                                               -> localStorage cart
-                                               -> accessible drawer state
+Browser UI -> REST service -> source catalog
+     |             |       -> ignored runtime orders/inventory
+     +-> local cart fallback
 ```
 
-The static architecture is deliberate: reviewers can run the complete product from any simple web server, and the same interface can later consume inventory and checkout APIs.
+The browser can load `data/products.json` when hosted statically, which makes the GitHub Pages review build useful. Checkout is enabled only when the local API is reachable. The service validates every product, quantity, delivery slot, promotion, and total before writing an order.
+
+The JSON runtime store keeps the project easy to inspect and reset. A production service would use database transactions, idempotency, authenticated ownership, inventory reservations, and payment-provider tokens.
